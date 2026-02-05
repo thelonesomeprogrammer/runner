@@ -1,0 +1,35 @@
+# Example Configuration for Runner
+
+[general]
+history_size = 50
+terminal = "alacritty -e"
+
+[sources]
+scan_path = true
+scan_desktop = true
+
+[groups.default]
+sources = ["desktop", "bin", "history"]
+blacklist = ["^rm$", "^reboot$", "^poweroff$"]
+
+[groups.dev]
+sources = ["desktop"]
+whitelist = ["code", "alacritty", "git-gui"]
+env = { RUST_BACKTRACE = "1" }
+
+[groups.media]
+sources = ["desktop"]
+whitelist = ["spotify", "vlc", "mpv"]
+
+[theme]
+width = 600
+height = 400
+padding = 20.0
+spacing = 10.0
+border_radius = 12.0
+# RGBA hex colors
+background = "1e1e1eff"
+border_color = "3c3c50ff"
+text = "c8c8c8ff"
+selection_background = "3c3c50ff"
+selection_text = "ffffffff"
