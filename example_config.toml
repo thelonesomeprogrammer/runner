@@ -1,35 +1,89 @@
 # Example Configuration for Runner
+# Copy this file to ~/.config/runner/config.toml to customize your launcher
 
+# ============================================================================
+# General Settings
+# ============================================================================
 [general]
+# Number of command history entries to keep (most recently used commands)
 history_size = 50
+
+# Terminal emulator command to use for launching terminal applications
+# The command should accept the program to run as arguments after -e
 terminal = "alacritty -e"
 
+# ============================================================================
+# Source Settings
+# ============================================================================
 [sources]
+# Scan $PATH directories for executable binaries
 scan_path = true
+
+# Scan XDG desktop files from:
+#   - /usr/share/applications
+#   - /usr/local/share/applications
+#   - ~/.local/share/applications
 scan_desktop = true
 
+# ============================================================================
+# Launch Groups
+# ============================================================================
+# Launch groups define different launcher profiles that can be selected
+# with the --group flag (e.g., runner --group dev)
+
+# Default group - used when no --group is specified
 [groups.default]
+# Sources to include: "desktop" (XDG apps), "bin" ($PATH), "history", "scripts"
 sources = ["desktop", "bin", "history"]
+
+# Blacklist: Regular expressions for commands to exclude from results
+# Use ^ and $ for exact matches, or partial patterns for broader filtering
 blacklist = ["^rm$", "^reboot$", "^poweroff$"]
 
+# Development group - for coding and development tools
 [groups.dev]
 sources = ["desktop"]
+
+# Whitelist: Only show entries matching these patterns (overrides blacklist)
 whitelist = ["code", "alacritty", "git-gui"]
+
+# Environment variables to set when launching applications from this group
 env = { RUST_BACKTRACE = "1" }
 
+# Media group - for multimedia applications
 [groups.media]
 sources = ["desktop"]
 whitelist = ["spotify", "vlc", "mpv"]
 
+# ============================================================================
+# Theme Configuration
+# ============================================================================
 [theme]
+# Window dimensions (in pixels)
 width = 600
 height = 400
-padding = 20.0
-spacing = 10.0
+
+# Spacing and padding (in pixels)
+padding = 20.0      # Inner padding around content
+spacing = 10.0      # Space between UI elements
+
+# Corner rounding for the window
 border_radius = 12.0
-# RGBA hex colors
+
+# Colors in RGBA hex format (8 characters: RRGGBBAA)
+# AA = transparency (ff = opaque, 00 = fully transparent)
+
+# Main window background
 background = "1e1e1eff"
+
+# Border color around the window
 border_color = "3c3c50ff"
+
+# Regular text color
 text = "c8c8c8ff"
+
+# Background color for selected item
 selection_background = "3c3c50ff"
+
+# Text color for selected item
 selection_text = "ffffffff"
