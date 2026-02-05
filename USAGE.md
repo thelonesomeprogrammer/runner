@@ -155,7 +155,7 @@ Use alpha channel (last two hex digits):
 
 ```toml
 [theme]
-background = "1e1e1ecc"  # 80% opacity
+background = "1e1e1ecc"  # cc = approx 80% opacity (204/255)
 ```
 
 ## Integration Examples
